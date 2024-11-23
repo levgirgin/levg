@@ -19,12 +19,11 @@ LANGCHAIN_TRACING_V2=True
 LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 LANGCHAIN_API_KEY="LANGCHAIN_API_KEY"
 LANGCHAIN_PROJECT="levg_vector"
-
-os.environ["GROQ_API_KEY"]
+GROQ_API_KEY=os.environ["GROQ_API_KEY"]
+OPENAI_API_KEY=os.environ["OPENAI_API_KEY"]
 
 llm = ChatGroq(model="llama3-8b-8192")
-#client = OpenAI(api_key="OPENAI_API_KEY")
-
+# client = OpenAI(api_key="OPENAI_API_KEY")
 
 
 # Generate Sample Documents
