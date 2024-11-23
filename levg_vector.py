@@ -23,17 +23,9 @@ LANGCHAIN_PROJECT="levg_vector"
 os.environ["GROQ_API_KEY"]
 
 llm = ChatGroq(model="llama3-8b-8192")
-client = OpenAI(api_key=OPENAI_API_KEY)
+#client = OpenAI(api_key="OPENAI_API_KEY")
 
-    response = client.chat.completions.create(
-        model=self.model_name,
-        messages=conversation,
-        temperature=0,
-        top_p=1,
-        frequency_penalty=0,    
-        presence_penalty=0
-    )
-    return response.choices[0].message.content
+
 
 # Generate Sample Documents
 documents = [
