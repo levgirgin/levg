@@ -1,6 +1,6 @@
 import getpass
 import os
-from openai import OpenAI
+# from openai import OpenAI
 
 
 from langchain_groq import ChatGroq
@@ -20,7 +20,7 @@ LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 LANGCHAIN_API_KEY="LANGCHAIN_API_KEY"
 LANGCHAIN_PROJECT="levg_vector"
 GROQ_API_KEY=os.environ["GROQ_API_KEY"]
-OPENAI_API_KEY=os.environ["OPENAI_API_KEY"]
+# OPENAI_API_KEY=os.environ["OPENAI_API_KEY"]
 
 llm = ChatGroq(model="llama3-8b-8192")
 # client = OpenAI(api_key="OPENAI_API_KEY")
@@ -56,21 +56,21 @@ vectorstore = Chroma.from_documents(
 )
 
 # Return documents based on similarity to a string query
-vectorstore.similarity_search("cat")
+#vectorstore.similarity_search("cat")
 
 # Return documents based on similarity to an embedded query
 
-embedding = OpenAIEmbeddings().embed_query("cat")
-vectorstore.similarity_search_by_vector(embedding)
+#embedding = OpenAIEmbeddings().embed_query("cat")
+#vectorstore.similarity_search_by_vector(embedding)
 
 # Retrieve Documents
-retriever = RunnableLambda(vectorstore.similarity_search).bind(k=1)  # select top result
-retriever.batch(["cat", "shark"])
+#retriever = RunnableLambda(vectorstore.similarity_search).bind(k=1)  # select top result
+#retriever.batch(["cat", "shark"])
                 
 # To use a VectorStoreRetriever
 retriever = vectorstore.as_retriever(search_type="similarity",search_kwargs={"k": 1},)
 
-retriever.batch(["cat", "shark"])
+#retriever.batch(["cat", "shark"])
 
 # Example
 message = """
@@ -86,6 +86,6 @@ prompt = ChatPromptTemplate.from_messages([("human", message)])
 
 rag_chain = {"context": retriever, "question": RunnablePassthrough()} | prompt | llm
 
-response = rag_chain.invoke("tell me about cats")
+response = rag_chain.invoke("tell me about dogs")
 
 print(response.content)
